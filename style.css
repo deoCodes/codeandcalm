@@ -1,0 +1,766 @@
+/* === Font + Reset === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  scroll-behavior: smooth;
+  font-family: 'Helvetica Neue', sans-serif;
+  color: white;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+html {
+  scroll-snap-type: y mandatory;
+}
+
+/* === LANDING PAGE === */
+body.landing {
+  background: url("assets/bg.png") no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  display: block;
+  position: relative;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* === Nav — if used === */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav h1 {
+  font-size: 2rem;
+}
+
+/* === Hero === */
+.hero {
+  text-align: center;
+  margin-top: 290px;
+  margin-bottom: 6vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.site-title {
+  font-size: 3.2rem;
+  font-weight: 700;
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.site-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  opacity: 0.8;
+}
+
+.hero-tagline {
+  font-size: 1.2rem;
+  max-width: 500px;
+  margin: 0 auto 20px auto;
+  line-height: 1.5;
+  color: #ddd;
+}
+
+.hero-buttons {
+  margin-top: 0px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.login-btn
+{
+  margin-right: 5px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  backdrop-filter: blur(10px);
+  transition: background-color 0.3s ease;
+}
+
+.signup-btn {
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  backdrop-filter: blur(10px);
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover,
+.signup-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+
+/* === CTA === */
+.cta {
+  padding: 12px 24px;
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 30px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.cta:hover {
+  background: white;
+  color: #333;
+}
+
+/* === Tiles === */
+.nav-tiles {
+  display: grid;
+  grid-template-columns: repeat(4, 140px);
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.nav-tiles a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 140px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid white;
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.nav-tiles a:hover {
+  background-color: white;
+  color: #333;
+  transform: scale(1.05);
+}
+
+/* === CHAT PAGE === */
+.chatpage {
+  background: #1f1f1f;
+  color: white;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.chat-container {
+  width: 100%;
+  max-width: 600px;
+  background: #2c2c2c;
+  padding: 30px;
+  border-radius: 15px;
+}
+
+.chatlog {
+  height: 300px;
+  overflow-y: auto;
+  background: #1a1a1a;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.chatlog::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.chatlog p {
+  margin: 0;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  max-width: 80%;
+}
+
+.chatlog .user {
+  background-color: #0077ff;
+  align-self: flex-end;
+}
+
+.chatlog .bot {
+  background-color: #444;
+  align-self: flex-start;
+}
+
+.input-area {
+  display: flex;
+  gap: 10px;
+}
+
+#userInput {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+}
+
+button {
+  background: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* === SECTION STYLES === */
+.section {
+  width: 100vw;
+  height: 100vh;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  z-index: -1;
+}
+
+.section * {
+  position: relative;
+  z-index: 1;
+}
+
+.section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.section p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+/* === Section Backgrounds === */
+#chat.section {
+  background-image: url("assets/bgrobot.png");
+}
+
+#music.section {
+  background-image: url("assets/bgmusic.png");
+}
+
+#dashboard.section {
+  background-image: url("assets/dash.png");
+}
+
+#guidance.section {
+  background-image: url("assets/bgguide.png");
+}
+
+/* === Floating Chat Icon === */
+#chat-launcher {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #0077ff;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* === Optional: Chat Popup Styling (if used) === */
+#chat-popup {
+  position: fixed;
+  bottom: 100px;
+  right: 24px;
+  width: 320px;
+  max-height: 450px;
+  background: #2c2c2c;
+  color: white;
+  border-radius: 15px;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+#chat-header {
+  background: #0077ff;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+#chat-header button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* === SECTION TRANSITION === */
+.section-transition {
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.6));
+}
+
+
+
+/* === Fade In on Scroll === */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* === CHAT PAGE FULL SCREEN === */
+body.chatpage {
+  background: url("assets/bgrobot.png") no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 30px 20px;
+}
+
+.chat-wrapper {
+  width: 100%;
+  max-width: 700px;
+  background: linear-gradient(to bottom right, rgba(255,255,255,0.08), rgba(255,255,255,0.02)); /* optional gradient */
+  border-radius: 20px;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  /* glass / steamy look */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25); /* soft glow */
+}
+
+
+
+.chat-header h2 {
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+.chat-header p {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.chatlog {
+  background: rgba(255, 255, 255, 0.06); /* soft frosted background */
+  padding: 20px;
+  border-radius: 16px;
+  height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+.chatlog p {
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 15px;
+  line-height: 1.4;
+  max-width: 75%;
+  word-wrap: break-word;
+  backdrop-filter: blur(4px);
+}
+
+.chatlog .user {
+  background: rgba(40, 40, 40, 0.4); /* soft neutral charcoal */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f1f1f1;
+  align-self: flex-start;
+  padding: 12px 16px;
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  align-self: flex-end;
+}
+
+
+.chatlog .bot {
+  background: rgba(40, 40, 40, 0.4); /* soft neutral charcoal */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f1f1f1;
+  align-self: flex-start;
+  padding: 12px 16px;
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+.input-area {
+  display: flex;
+  gap: 10px;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  font-size: 15px;
+  background: #eee;
+  color: #222;
+}
+
+.input-area button {
+  background: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0 18px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.input-area button:hover {
+  background: #005fd1;
+}
+
+.contact-section {
+  background: url('assets/bgcontact.png') no-repeat center center/cover;
+  padding: 80px 20px 60px;
+  min-height: 100vh; /* Fill the full screen height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 60px 20px; /* reduced top/bottom padding for better centering */
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  box-sizing: border-box;
+}
+
+.contact-container {
+  max-width: 700px;
+  width: 100%;
+}
+
+.contact-section h2 {
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.contact-section p {
+  color: white;
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: stretch;
+}
+
+.contact-section input,
+.contact-section textarea {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 14px 16px;
+  width: 100%;
+  font-size: 1rem;
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.contact-section input::placeholder,
+.contact-section textarea::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+}
+
+.contact-section input:focus,
+.contact-section textarea:focus {
+  outline: none;
+  border-color: #f6e0c4;
+  box-shadow: 0 0 10px #f6e0c4;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Submit Button */
+.contact-form button {
+  background: rgba(0, 0, 0, 0.3); /* semi-transparent dark */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 14px 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 50%;
+  max-width: 300px;
+  margin: 10px auto 0;
+  display: block;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.contact-form button:hover {
+  background: rgba(30, 30, 30, 0.6); /* darken a bit on hover */
+  transform: scale(1.03); /* subtle zoom effect */
+}
+
+
+/* Scroll-in animation */
+.scroll-in {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.scroll-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Header Styles */
+.main-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0rem 0rem;
+  display: absolute;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Make authArea a flex container */
+#authArea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 1rem 2rem;
+  z-index: 999;
+}
+
+/* Left side (welcome text) */
+.auth-left {
+  color: white;
+  font-weight: 500;
+}
+
+/* Right side (logout button) */
+.auth-right {
+  display: flex;
+  justify-content: flex-end;
+  text-align: right;
+  flex: 1;
+}
+
+
+
+
+/* Auth buttons */
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.auth-btn {
+  padding: 0.6rem 1.4rem;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  color: white;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.auth-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+
+.signup-btn {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.signup-btn:hover {
+  background: #2bbbad;
+}
+
+.welcome-text {
+  color: #fff;
+  margin-right: 1rem;
+  font-weight: 500;
+}
+
+.logout-btn {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Make authArea a flex container */
+#authArea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  padding: 1rem 2rem;
+  z-index: 999;
+}
+
+/* Left side (welcome text) */
+.auth-left {
+  color: white;
+  font-weight: 500;
+}
+
+/* Right side (logout button) */
+.auth-right {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 0px;
+}
+
+

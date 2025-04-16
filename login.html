@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login – Calm & Code</title>
+  <link rel="stylesheet" href="login.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body class="auth-page">
+
+  <div class="glass-card">
+    <h1>Welcome Back 🌙</h1>
+
+    <form id="loginForm">
+      <input type="email" id="loginEmail" placeholder="Email" required autocomplete="email" />
+      <input type="password" id="loginPassword" placeholder="Password" required autocomplete="current-password" />
+      <button type="submit">Log In</button>
+      <p id="loginStatus"></p>
+    </form>
+
+    <div class="divider">or</div>
+
+    <button id="googleLoginBtn" class="google-btn">
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" />
+      Sign in with Google
+    </button>
+
+    <p class="back-link">
+      <a href="register.html">Don't have an account? Register</a>
+    </p>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-auth-compat.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>

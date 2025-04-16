@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calm & Code – Your Digital Sanctuary</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet">
+
+  <!-- Inline CSS for hero buttons (you can move this to your style.css if you like) -->
+  <style>
+    .hero-buttons {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .auth-btn {
+      padding: 0.6rem 1.4rem;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      color: white;
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .auth-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head>
+
+<body class="landing">
+
+    <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
+
+      <!-- Firebase Config & Firestore -->
+      <script>
+        const firebaseConfig = {
+          apiKey: "AIzaSyDe3lvdaYg76LiAVicYcqgUgPs5yKzDA8M",
+          authDomain: "calmandcoders.firebaseapp.com",
+          projectId: "calmandcoders",
+          storageBucket: "calmandcoders.firebasestorage.app",
+          messagingSenderId: "695944043480",
+          appId: "1:695944043480:web:90f16d5ed1f54f199bf0ad",
+          measurementId: "G-XSWPJVJFH1"
+        };
+    
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    
+        document.addEventListener("DOMContentLoaded", () => {
+          const form = document.getElementById("contactForm");
+    
+          form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+    
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+    
+            if (!name || !email || !message) {
+              alert("Please fill in all fields.");
+              return;
+            }
+    
+            try {
+              await db.collection("contacts").add({
+                name,
+                email,
+                message,
+                timestamp: new Date()
+              });
+    
+              alert("Thanks for reaching out! 💬");
+              form.reset();
+            } catch (error) {
+              console.error("Error submitting form: ", error);
+              alert("Something went wrong. Please try again.");
+            }
+          });
+    
+          const authArea = document.getElementById("authArea");
+
+          let currentUser = null;
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    currentUser = user;
+
+    const username = user.displayName || user.email.split('@')[0];
+
+    // Example: Show it inside a div with ID "welcomeBanner"
+    document.getElementById("welcomeBanner").textContent = `Welcome ${username}!`;
+  }
+});
+
+
+    
+          firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+              const email = user.email;
+              authArea.innerHTML = `
+                <div class="auth-right"</dev><a href="#" class="auth-btn logout-btn" onclick="logout()">Logout</a>
+              `;
+            } else {
+              authArea.innerHTML = `
+                <div class="auth-right"</dev><a href="login.html" class="auth-btn login-btn">Log In</a>
+              `;
+            }
+          });
+        });
+    
+        function logout() {
+          firebase.auth().signOut().then(() => {
+            window.location.reload();
+          }).catch((error) => {
+            console.error("Logout error:", error);
+          });
+        }
+      </script>
+
+
+  <!-- Clean Header (empty, since buttons will be inside hero) -->
+  <header class="main-header">
+    <div class="logo"></div>
+  </header>
+
+  <!-- Hero Section -->
+  <div class="overlay">
+    <div class="hero">
+      <h1 class="site-title">Calm & Code</h1>
+      <p class="hero-tagline">Breathe In. Breathe Out<br>Your digital sanctuary for calm and clarity</p>
+      <h2 id="welcomeBanner">Welcome!</h2>
+      <a href="#chat" class="cta">Continue</a>
+      <!-- Auth Buttons Placed Within the Hero Section -->
+      <div class="hero-buttons" id="authArea">
+        <!-- Auth buttons will be injected here by Firebase Auth -->
+         
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Music -->
+  <audio id="bg-music" loop>
+    <source src="assets/bgmusic.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Scroll-triggered Sections -->
+
+  <section id="chat" class="section fade-in">
+    <h2>Chat with Puff</h2>
+    <p>Talk to puff about anything.</p>
+    <a href="chat.html" class="cta">Chat</a>
+  </section>
+
+  <section id="music" class="section fade-in">
+    <h2>Relax with Music</h2>
+    <p>Choose calming tracks to focus and reset.</p>
+    <a href="music/index.html" class="cta">Browse Tracks</a>
+  </section>
+
+  <section id="dashboard" class="section fade-in">
+    <h2>Play around with our fun dashbaord</h2>
+    <p>Choose calming tracks to focus and reset.</p>
+    <a href="mood-dashboard/index.html" class="cta">Have fun!</a>
+  </section>
+
+  <section id="guidance" class="section fade-in">
+    <h2>Guidance & Self-Care</h2>
+    <p>Need Immediate help?</p>
+    <a href="https://findahelpline.com/" target="_blank" class="cta">Don't worry</a>
+  </section>
+
+  <!-- Contact Us Section -->
+  <section class="contact-section scroll-in" id="contact">
+    <div class="contact-wrapper">
+      <h2>Contact Us</h2>
+      <p>Have questions or feedback? We'd love to hear from you!</p>
+      <form id="contactForm" class="contact-form">
+        <input type="text" id="name" placeholder="Your Name" required />
+        <input type="email" id="email" placeholder="Your Email" required />
+        <textarea id="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+
+
+
+
+  <!-- Fade-in animations -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const faders = document.querySelectorAll('.fade-in, .scroll-in');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      faders.forEach(el => observer.observe(el));
+    });
+  </script>
+
+  <!-- Music Autoplay -->
+  <script>
+    const bgMusic = document.getElementById("bg-music");
+    bgMusic.volume = 0.3;
+
+    function tryToPlayMusic() {
+      bgMusic.play().catch(() => {});
+    }
+
+    window.addEventListener("click", tryToPlayMusic, { once: true });
+    window.addEventListener("keydown", tryToPlayMusic, { once: true });
+    window.addEventListener("touchstart", tryToPlayMusic, { once: true });
+  </script>
+
+</body>
+</html>

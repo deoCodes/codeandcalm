@@ -1,0 +1,193 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Make sure html and body both stretch full height */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body.auth-page {
+  font-family: 'Inter', sans-serif;
+  background: url('register4.png') no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  overflow: hidden;
+  /* Breathing animation removed from background */
+}
+
+/* Frosted Glass */
+.glass-card {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 1s ease forwards, breatheCard 8s ease-in-out infinite;
+  line-height: 1.2;
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Card Breathing Animation */
+@keyframes breatheCard {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scale(1.015);
+    opacity: 1;
+  }
+}
+
+/* Headline */
+.glass-card h1 {
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  font-size: 1.8rem;
+  color: white;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Inputs */
+.glass-card input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  outline: none;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.glass-card input:nth-child(1) { animation-delay: 0.3s; }
+.glass-card input:nth-child(2) { animation-delay: 0.5s; }
+.glass-card input:nth-child(3) { animation-delay: 0.7s; }
+
+.glass-card input:focus {
+  box-shadow: 0 0 8px rgba(38, 166, 154, 0.8);
+  transition: box-shadow 0.3s ease;
+}
+
+.glass-card input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Primary Button */
+.glass-card button {
+  width: 100%;
+  padding: 0.75rem;
+  background: #26a69a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 1rem;
+}
+
+.glass-card button:hover {
+  background: #2bbbad;
+}
+
+/* Google Sign-In Button */
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  color: #444;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  width: 100%;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.google-btn:hover {
+  background: #f1f1f1;
+  transform: scale(1.03);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.google-btn img {
+  width: 20px;
+  margin-right: 10px;
+}
+
+/* Divider Text */
+.divider {
+  margin: 0rem 0 0rem;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+/* Status Message */
+#registerStatus {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Back Link */
+.back-link {
+  margin-top: 1.5rem;
+}
+
+.back-link a {
+  color: #eee;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+/* Fade Up Animation */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .glass-card {
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+  }
+}
+
+/* Form Section Margin */
+.form-section {
+  margin-top: 0px;
+}
