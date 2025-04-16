@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="styleD.css" />
+</head>
+
+<body class="dashboard-page">
+
+  <!-- Header -->
+  <header class="dashboard-header">
+    <h1>Enjoy your stay</h1>
+    <p class="subtitle">Your calm space to reflect, recharge, and connect.</p>
+  </header>
+
+  <!-- Main Layout -->
+  <main class="dashboard-layout">
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+      <!-- Session Summary -->
+      <section class="dashboard-card session-summary vertical-stats">
+        <h2>Session Summary</h2>
+        <div class="stat-box">
+          <span class="stat-number" id="chatCount">0</span>
+          <span class="stat-label">Chats Today</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number" id="moodCount">0</span>
+          <span class="stat-label">Mood Logs</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number" id="goalCount">0</span>
+          <span class="stat-label">Goals Completed</span>
+        </div>
+      </section>
+
+      <!-- Community -->
+      <section class="dashboard-card community">
+        <h2>Community</h2>
+        <p>Coming soon: a space to share stories, wins & support 💬</p>
+      </section>
+    </aside>
+
+    <!-- Center: Main Dashboard Cards -->
+    <section class="dashboard-main">
+
+      <!-- Mood Tracker -->
+      <section class="dashboard-card mood-tracker">
+        <h2>How are you feeling today?</h2>
+        <div class="mood-options">
+          <button data-mood="😊">😊</button>
+          <button data-mood="😐">😐</button>
+          <button data-mood="😔">😔</button>
+          <button data-mood="😠">😠</button>
+          <button data-mood="😴">😴</button>
+        </div>
+      </section>
+
+      <!-- Entertainment -->
+      <section class="dashboard-card entertainment">
+        <h2>Entertainment</h2>
+        <div class="tic-tac-toe">
+          <button></button>
+          <button></button>
+          <button></button>
+          <button></button>
+          <button></button>
+          <button></button>
+          <button></button>
+          <button></button>
+          <button></button>
+        </div>
+      </section>
+
+    </section>
+
+    <!-- Right Sidebar -->
+    <aside class="rightbar">
+
+      <!-- Self-Care Goals -->
+      <section class="dashboard-card checklist vertical-stats">
+        <h2>Self-Care Goals</h2>
+        <ul class="goals-list">
+          <li><input type="checkbox" /> Meditate for 5 minutes</li>
+          <li><input type="checkbox" /> Take a walk</li>
+          <li><input type="checkbox" /> Journal a thought</li>
+          <li><input type="checkbox" /> Drink water</li>
+        </ul>
+      </section>
+
+      <!-- Quote Box -->
+      <section class="dashboard-card quote-box">
+        <h2>Today's Quote</h2>
+        <blockquote id="dailyQuote">
+          "You are not a drop in the ocean. You are the entire ocean in a drop." – Rumi
+        </blockquote>
+      </section>
+
+    </aside>
+
+  </main>
+
+  <!-- Dashboard Script -->
+  <script>
+    let chats = 0, moods = 0, goals = 0;
+
+    const chatCount = document.getElementById("chatCount");
+    const moodCount = document.getElementById("moodCount");
+    const goalCount = document.getElementById("goalCount");
+
+    document.querySelectorAll(".mood-options button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        moods++;
+        moodCount.textContent = moods;
+        alert(`Mood logged: ${btn.dataset.mood}`);
+      });
+    });
+
+    document.querySelectorAll(".goals-list input").forEach(input => {
+      input.addEventListener("change", () => {
+        const completed = document.querySelectorAll(".goals-list input:checked").length;
+        goalCount.textContent = completed;
+      });
+    });
+
+    // ==== Tic Tac Toe Logic ====
+    const cells = document.querySelectorAll(".tic-tac-toe button");
+    let currentPlayer = "X";
+    let gameActive = true;
+
+    const winCombos = [
+      [0,1,2], [3,4,5], [6,7,8],  // rows
+      [0,3,6], [1,4,7], [2,5,8],  // columns
+      [0,4,8], [2,4,6]            // diagonals
+    ];
+
+    function checkWin() {
+      return winCombos.some(combo => {
+        const [a, b, c] = combo;
+        return cells[a].textContent &&
+               cells[a].textContent === cells[b].textContent &&
+               cells[b].textContent === cells[c].textContent;
+      });
+    }
+
+    function checkDraw() {
+      return [...cells].every(cell => cell.textContent);
+    }
+
+    function resetGame() {
+      cells.forEach(cell => cell.textContent = "");
+      currentPlayer = "X";
+      gameActive = true;
+    }
+
+    cells.forEach(cell => {
+      cell.addEventListener("click", () => {
+        if (!gameActive || cell.textContent) return;
+
+        cell.textContent = currentPlayer;
+
+        if (checkWin()) {
+          alert(`${currentPlayer} wins!`);
+          gameActive = false;
+          setTimeout(resetGame, 1500);
+        } else if (checkDraw()) {
+          alert("It's a draw!");
+          gameActive = false;
+          setTimeout(resetGame, 1500);
+        } else {
+          currentPlayer = currentPlayer === "X" ? "O" : "X";
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

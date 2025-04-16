@@ -1,0 +1,119 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1e1e1e, #121212);
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+  
+  /* Background overlay image */
+  .background-overlay {
+    background-image: url('bg.png');
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -2;
+    opacity: 0.2;
+    filter: blur(2px);
+  }
+  
+  .container {
+    max-width: 1100px;
+    width: 100%;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, #33ccff, #ff99cc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .subtext {
+    text-align: center;
+    color: #ccc;
+    margin-bottom: 2.5rem;
+    font-size: 1.1rem;
+  }
+  
+  #searchInput {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    border: none;
+    border-radius: 10px;
+    background: #2a2a2a;
+    color: #fff;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  #searchInput:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(51, 204, 255, 0.4);
+  }
+  
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.8rem;
+  }
+  
+  .video {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .video:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .video img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.video h3 {
+  margin-top: 0.6rem;
+  font-size: 1rem;
+  text-align: center;
+  color: #fff;
+}
+
+  
